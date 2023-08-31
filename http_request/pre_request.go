@@ -10,21 +10,18 @@ import (
 // 初始化请求
 func initRequest(method string, url string) *resty.Request {
 
-	//1.创建客户端
-	client := resty.New()
-
-	//2.设置统一超时时间
+	//1.设置统一超时时间
 	client.SetTimeout(10 * time.Second)
 
-	//3.设置URL
+	//2.设置URL
 	client.SetBaseURL(url)
 
-	//4.初始化请求
+	//3.初始化请求
 	request := client.R()
 
-	//5.设置请求方法
+	//4.设置请求方法
 	request.Method = method
 
-	//6.返回
+	//5.返回
 	return request
 }

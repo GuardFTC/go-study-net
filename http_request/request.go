@@ -8,6 +8,9 @@ import (
 	"github.com/go-resty/resty/v2"
 )
 
+var url = "https://jsonplaceholder.typicode.com/posts/1"
+var client = resty.New()
+
 // user结构体
 type user struct {
 	UserId int
@@ -15,8 +18,6 @@ type user struct {
 	Title  string
 	Body   string
 }
-
-var url = "https://jsonplaceholder.typicode.com/posts/1"
 
 // GetRequest 发送GET请求
 func GetRequest() {
@@ -123,7 +124,7 @@ func UploadFileFromLocal() {
 
 	//1.上传本地文件
 	url := "https://myapp.com/upload"
-	filePath := "/Users/a123/Documents/168568850710853263.png"
+	filePath := "/Users/a123/Documents/测试.png"
 	request := initRequest(resty.MethodPost, url).
 		SetFile("profile_img", filePath)
 
