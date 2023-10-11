@@ -1,5 +1,5 @@
-// Package _grom @Author:冯铁城 [17615007230@163.com] 2023-09-14 09:22:28
-package _grom
+// Package _gorm @Author:冯铁城 [17615007230@163.com] 2023-09-14 09:22:28
+package _gorm
 
 import (
 	"fmt"

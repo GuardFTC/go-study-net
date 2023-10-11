@@ -4,7 +4,8 @@ package main
 import (
 	"fmt"
 
-	"go-study-net/_grom"
+	"go-study-net/_gorm"
+	"go-study-net/_gorm/model"
 )
 
 func main() {
@@ -68,23 +69,41 @@ func testHttpRequest() {
 func testGormDB() {
 
 	//1.初始化数据库连接
-	db := _grom.InitDB()
+	db := _gorm.InitDB()
 
 	//2.创建学生数据库
-	err := db.Set("gorm:table_options", "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='学生表'").AutoMigrate(&_grom.Student{})
+	err := db.Set("gorm:table_options", "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='学生表'").AutoMigrate(&model.Student{})
 	if err != nil {
 		panic(fmt.Sprintf("create table error:[%v]", err))
 	}
 
 	//3.创建老师数据库
-	err = db.Set("gorm:table_options", "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='老师表'").AutoMigrate(&_grom.Teacher{})
+	err = db.Set("gorm:table_options", "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='老师表'").AutoMigrate(&model.Teacher{})
 	if err != nil {
 		panic(fmt.Sprintf("create table error:[%v]", err))
 	}
 
 	//4.创建老师学生中间表数据库
-	err = db.Set("gorm:table_options", "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='老师学生表'").AutoMigrate(&_grom.TeacherAndStudent{})
+	err = db.Set("gorm:table_options", "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='老师学生表'").AutoMigrate(&model.TeacherAndStudent{})
 	if err != nil {
 		panic(fmt.Sprintf("create table error:[%v]", err))
 	}
+
+	//5.创建数据
+	_gorm.Create(db)
+
+	//6.初级查询
+	_gorm.SimpleSelect(db)
+
+	//7.where查询
+	_gorm.WhereSelect(db)
+
+	//8.特殊查询
+	_gorm.SpecialSelect(db)
+
+	//9.更新数据
+	_gorm.Update(db)
+
+	//10.删除数据
+	_gorm.Delete(db)
 }
