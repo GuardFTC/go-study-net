@@ -196,6 +196,14 @@ func WhereSelect(db *gorm.DB) {
 	for _, selectStudent := range selectStudents {
 		log.Print(fmt.Sprintf("selectStudent=[%v]", selectStudent))
 	}
+
+	//14.查询数量
+	var count int64
+	if result := db.Model(&model.Student{}).Count(&count); result.Error != nil {
+		panic(fmt.Sprintf("select data error:[%v]", result.Error))
+	}
+	fmt.Println("\nget count:")
+	log.Print(fmt.Sprintf("count=[%v]", count))
 }
 
 // group查询结果
