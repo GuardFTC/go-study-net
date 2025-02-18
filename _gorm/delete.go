@@ -22,7 +22,7 @@ func Delete(db *gorm.DB) {
 	var students []*model.Student
 	db.Order("id desc").Find(&students)
 
-	////5.根据主键ID删除学生数据
+	//5.根据主键ID删除学生数据
 	db.Delete(&model.Student{}, students[0].ID)
 
 	//6.根据主键ID批量删除学生数据
